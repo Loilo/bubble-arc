@@ -64,7 +64,7 @@ BubbleArc = (function() {
       options = {};
     }
     this.options = this.defaults(options, {
-      classes: '',
+      classes: 'center',
       radius: [6, 'em'],
       degrees: 360,
       fillLast: false,

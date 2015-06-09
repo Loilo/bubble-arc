@@ -33,7 +33,7 @@ class BubbleArc
 
 	constructor: (options = {}) ->
 		@options = @defaults options,
-			classes: ''
+			classes: 'center'
 			radius: [6, 'em']
 			degrees: 360
 			fillLast: false 
