@@ -1,0 +1,33 @@
+{
+  "name": "bubble-arc",
+  "version": "1.0.0",
+  "dependencies": {
+    "jquery": "^2.1.4"
+  },
+  "devDependencies": {
+    "browserify": "^10.2.4",
+    "coffeeify": "^1.1.0",
+    "gulp": "^3.9.0",
+    "gulp-cssmin": "^0.1.7",
+    "gulp-rename": "^1.2.2",
+    "gulp-ruby-sass": "^1.0.5",
+    "gulp-uglify": "^1.2.0",
+    "vinyl-buffer": "^1.0.0",
+    "vinyl-source-stream": "^1.1.0"
+  },
+  "description": "Arranges bubbles around a center element with CSS and JavaScript. Building requires ruby, sass and the sass-json-vars gem to be installed.",
+  "main": "dist/bubble-arc.min.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Loilo/bubble-arc.git"
+  },
+  "author": "Florian Reuschel <florian@loilo.de> (http://loilo.de)",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/Loilo/bubble-arc/issues"
+  },
+  "homepage": "https://github.com/Loilo/bubble-arc#readme"
+}
