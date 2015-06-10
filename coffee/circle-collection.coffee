@@ -1,5 +1,6 @@
 $ = require 'jquery'
-Circle = require './circle.coffee'
+Circle = require './circle'
+Helpers = require './helpers'
 
 class CircleCollection
 	constructor: (elements = []) ->

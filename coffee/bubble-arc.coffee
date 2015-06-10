@@ -1,8 +1,8 @@
 $ = require 'jQuery'
-Helpers = require './helpers.coffee'
-Supports = require './support.coffee'
-Circle = require './circle.coffee'
-CircleCollection = require './circle-collection.coffee'
+Helpers = require './helpers'
+Supports = require './support'
+Circle = require './circle'
+CircleCollection = require './circle-collection'
 
 class BubbleArc
 	@helpers: Helpers
