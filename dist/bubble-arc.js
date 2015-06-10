@@ -368,7 +368,7 @@ BubbleArc = (function() {
 module.exports = BubbleArc;
 
 
-},{"./circle-collection.coffee":2,"./circle.coffee":3,"./helpers.coffee":4,"./support.coffee":5}],2:[function(require,module,exports){
+},{"./circle-collection.coffee":2,"./circle.coffee":3,"./helpers.coffee":5,"./support.coffee":6}],2:[function(require,module,exports){
 var $, Circle, CircleCollection, Helpers;
 
 $ = (window.jQuery);
@@ -474,7 +474,7 @@ CircleCollection = (function() {
 module.exports = CircleCollection;
 
 
-},{"./circle.coffee":3,"./helpers.coffee":4}],3:[function(require,module,exports){
+},{"./circle.coffee":3,"./helpers.coffee":5}],3:[function(require,module,exports){
 var $, Circle, Helpers, Supports;
 
 $ = (window.jQuery);
@@ -583,7 +583,17 @@ Circle = (function() {
 module.exports = Circle;
 
 
-},{"./helpers.coffee":4,"./support.coffee":5}],4:[function(require,module,exports){
+},{"./helpers.coffee":5,"./support.coffee":6}],4:[function(require,module,exports){
+(function (global){
+global.BubbleArc = require('./bubble-arc.coffee');
+
+global.CircleCollection = require('./circle-collection.coffee');
+
+global.Circle = require('./circle.coffee');
+
+
+}).call(this,typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
+},{"./bubble-arc.coffee":1,"./circle-collection.coffee":2,"./circle.coffee":3}],5:[function(require,module,exports){
 module.exports = {
   transform: (function() {
     var el, t, transforms;
@@ -674,7 +684,7 @@ module.exports = {
 };
 
 
-},{}],5:[function(require,module,exports){
+},{}],6:[function(require,module,exports){
 var Helpers,
   indexOf = [].indexOf || function(item) { for (var i = 0, l = this.length; i < l; i++) { if (i in this && this[i] === item) return i; } return -1; };
 
@@ -687,4 +697,4 @@ module.exports = {
 };
 
 
-},{"./helpers.coffee":4}]},{},[1]);
+},{"./helpers.coffee":5}]},{},[4]);

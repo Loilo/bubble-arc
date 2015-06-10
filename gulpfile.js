@@ -23,7 +23,7 @@ gulp.task('sass', function () {
 
 gulp.task('coffee', function () {
 	var b = browserify();
-	b.add('coffee/bubble-arc.coffee');
+	b.add('coffee/export.coffee');
 	b.bundle()
 		.pipe(source('bubble-arc.js'))
 		.pipe(gulp.dest('dist/'))
