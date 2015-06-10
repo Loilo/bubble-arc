@@ -1,4 +1,4 @@
-Helpers = require './helpers'
+Helpers = require './helpers.coffee'
 
 module.exports =
 	transition: Helpers.transition isnt false

@@ -1,6 +1,6 @@
-$ = require 'jquery'
-Helpers = require './helpers'
-Supports = require './supports'
+$ = require 'jQuery'
+Helpers = require './helpers.coffee'
+Supports = require './support.coffee'
 
 class Circle
 	@create: (triangle = true) ->
