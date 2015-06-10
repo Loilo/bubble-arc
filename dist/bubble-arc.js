@@ -1,7 +1,7 @@
 (function e(t,n,r){function s(o,u){if(!n[o]){if(!t[o]){var a=typeof require=="function"&&require;if(!u&&a)return a(o,!0);if(i)return i(o,!0);var f=new Error("Cannot find module '"+o+"'");throw f.code="MODULE_NOT_FOUND",f}var l=n[o]={exports:{}};t[o][0].call(l.exports,function(e){var n=t[o][1][e];return s(n?n:e)},l,l.exports,e,t,n,r)}return n[o].exports}var i=typeof require=="function"&&require;for(var o=0;o<r.length;o++)s(r[o]);return s})({1:[function(require,module,exports){
 var $, BubbleArc, Circle, CircleCollection, Helpers, Supports;
 
-$ = require('jquery');
+$ = (window.jQuery);
 
 Helpers = require('./helpers.coffee');
 
@@ -368,10 +368,10 @@ BubbleArc = (function() {
 module.exports = BubbleArc;
 
 
-},{"./circle-collection.coffee":2,"./circle.coffee":3,"./helpers.coffee":4,"./support.coffee":5,"jquery":undefined}],2:[function(require,module,exports){
+},{"./circle-collection.coffee":2,"./circle.coffee":3,"./helpers.coffee":4,"./support.coffee":5}],2:[function(require,module,exports){
 var $, Circle, CircleCollection;
 
-$ = require('jquery');
+$ = (window.jQuery);
 
 Circle = require('./circle.coffee');
 
@@ -472,10 +472,10 @@ CircleCollection = (function() {
 module.exports = CircleCollection;
 
 
-},{"./circle.coffee":3,"jquery":undefined}],3:[function(require,module,exports){
+},{"./circle.coffee":3}],3:[function(require,module,exports){
 var $, Circle;
 
-$ = require('jquery');
+$ = (window.jQuery);
 
 Circle = (function() {
   Circle.create = function(triangle) {
@@ -577,7 +577,7 @@ Circle = (function() {
 module.exports = Circle;
 
 
-},{"jquery":undefined}],4:[function(require,module,exports){
+},{}],4:[function(require,module,exports){
 module.exports = {
   transform: (function() {
     var el, t, transforms;

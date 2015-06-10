@@ -1,4 +1,4 @@
-$ = require 'jquery'
+$ = require 'jQuery'
 Helpers = require './helpers.coffee'
 Supports = require './support.coffee'
 Circle = require './circle.coffee'
