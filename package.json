@@ -1,6 +1,6 @@
 {
   "name": "bubble-arc",
-  "version": "1.0.12",
+  "version": "1.0.13",
   "dependencies": {
     "jquery": "^2.1.4"
   },
@@ -26,7 +26,7 @@
     ]
   },
   "description": "Arranges bubbles around a center element with CSS and JavaScript. Building requires ruby, sass and the sass-json-vars gem to be installed.",
-  "main": "dist/bubble-arc.min.js",
+  "main": "coffee/bubble-arc.coffee",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
