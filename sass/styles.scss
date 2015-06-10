@@ -203,17 +203,6 @@
 	z-index: 2;
 }
 .center {
-	&:before {
-		content: "";
-		width: $center-size + 2 * $center-border;
-		height: $center-size + 2 * $center-border;
-		position: absolute;
-		margin: -$center-border;
-		z-index: -1;
-		background-image: url('../img/dotted-circle.png');
-		background-size: ($center-size + 2 * $center-border) ($center-size + 2 * $center-border);
-	}
-
 	width: $center-size;
 	height: $center-size;
 	background-color: map-get($center, background);
