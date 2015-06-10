@@ -12,10 +12,6 @@ Circle = require('./circle.coffee');
 CircleCollection = require('./circle-collection.coffee');
 
 BubbleArc = (function() {
-  BubbleArc.helpers = Helpers;
-
-  BubbleArc.supports = Supports;
-
   BubbleArc.prototype.defaults = function(obj1, obj2) {
     var prop, val;
     for (prop in obj2) {
@@ -364,6 +360,10 @@ BubbleArc = (function() {
   return BubbleArc;
 
 })();
+
+BubbleArc.helpers = Helpers;
+
+BubbleArc.supports = Supports;
 
 module.exports = BubbleArc;
 

@@ -5,9 +5,6 @@ Circle = require './circle.coffee'
 CircleCollection = require './circle-collection.coffee'
 
 class BubbleArc
-	@helpers: Helpers
-	@supports: Supports
-
 	defaults: (obj1, obj2) ->
 		for prop, val of obj2
 			obj1[prop] = val unless obj1[prop]?
@@ -279,5 +276,8 @@ class BubbleArc
 	reverse: ->
 		@circles.reverse()
 		@arrangeAll()
+
+BubbleArc.helpers = Helpers
+BubbleArc.supports = Supports
 
 module.exports = BubbleArc
