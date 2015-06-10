@@ -1,4 +1,4 @@
-module.exports =
+Helpers =
 	transform: do ->
 		el = document.createElement('fakeelement')
 		transforms = 
@@ -59,3 +59,5 @@ module.exports =
 		y = Helpers.sin deg
 		x = Helpers.cos deg
 		return [x, y]
+
+module.exports = Helpers

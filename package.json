@@ -1,6 +1,6 @@
 {
   "name": "bubble-arc",
-  "version": "1.0.9",
+  "version": "1.0.10",
   "dependencies": {
     "jquery": "^2.1.4"
   },

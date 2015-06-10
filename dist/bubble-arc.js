@@ -594,7 +594,9 @@ global.Circle = require('./circle.coffee');
 
 }).call(this,typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
 },{"./bubble-arc.coffee":1,"./circle-collection.coffee":2,"./circle.coffee":3}],5:[function(require,module,exports){
-module.exports = {
+var Helpers;
+
+Helpers = {
   transform: (function() {
     var el, t, transforms;
     el = document.createElement('fakeelement');
@@ -682,6 +684,8 @@ module.exports = {
     return [x, y];
   }
 };
+
+module.exports = Helpers;
 
 
 },{}],6:[function(require,module,exports){
