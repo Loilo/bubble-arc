@@ -1,0 +1,1 @@
+global.BubbleArc = require './bubble-arc.coffee'
