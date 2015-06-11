@@ -2,8 +2,73 @@
 <html>
 <head>
 	<title>Oh hai.</title>
+	<link href='http://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400' rel='stylesheet' type='text/css'>
+	<script type="text/javascript" src="http://code.jquery.com/jquery-2.1.4.min.js"></script>
+	<script type="text/javascript" src="bubble-arc.min.js"></script>
+	<link rel="stylesheet" type="text/css" href="bubble-arc.min.css">
+	<style type="text/css">
+	html, body {
+		margin: 0;
+		padding: 0;
+	}
+	html {
+		height: 100%;
+	}
+	body {
+		background-color: #F7F7F7;
+		min-height: 100%;
+		font-family: 'Source Sans Pro', Helvetica, sans-serif;
+		font-weight: 300;
+		text-align: center;
+	}
+	.center {
+		position: absolute;
+		margin-top: -50px;
+		background-color: #fff;
+	}
+	.container {
+		height: 600px;
+		background-color: #eee;
+		position: relative;
+	}
+	.circle .inner-label {
+		font-size: 0.5em;
+	}
+	h1 {
+		font-weight: 300;
+		font-size: 2.5em;
+		margin: 0;
+		padding: 1em 0;
+	}
+	</style>
+	<script>
+	var arc = null;
+	$(document).ready(function () {
+		arc = new BubbleArc({
+			degrees: 360,
+			fillLast: false,
+			radius: [200, 'px']
+		});
+
+		arc.dom().appendTo('.container');
+		var one = Circle
+			.create()
+			.innerLabel('1')
+			.outerLabel('number one');
+		var two = Circle
+			.create()
+			.innerLabel('2')
+			.outerLabel('number two');
+		var three = Circle
+			.create()
+			.innerLabel('3')
+			.outerLabel('number three');
+		arc.add([one, two, three]);
+	});
+	</script>
 </head>
 <body>
-:)
+	<h1>bubble-arc demo</h1>
+	<div class="container"></div>
 </body>
 </html>
