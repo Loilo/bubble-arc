@@ -69,7 +69,6 @@
   .circle .outer-label {
     position: absolute;
     line-height: normal;
-    font-weight: 400;
     color: #373637;
     pointer-events: none; }
     .circle .outer-label .text {
@@ -99,6 +98,7 @@
       margin-left: -150%;
       left: 0.48em; }
   .circle .inner-label {
+    font-size: 0.5em;
     position: absolute;
     width: 100%;
     height: 100%;
