@@ -102,6 +102,11 @@
 	var circs = {};
 	function buttons () {
 		btn('Add circle', function () {
+			var pre = '';
+			if (counter === 0) {
+				pre = "// The result of Circle.create() is just a jQuery collection with some dirtily added methods.\n\n"
+			}
+
 			$(this).removeClass('pulse');
 			counter++;
 			var inner = counter;
@@ -110,7 +115,7 @@
 			var c = Circle.create().innerLabel(inner).outerLabel('number ' + outer);
 			circs[inner] = c;
 			arc.add(c);
-			demoConsole.add("var circle" + inner + " = Circle\n\
+			demoConsole.add(pre + "var circle" + inner + " = Circle\n\
 	.create()\n\
 	.innerLabel('" + inner + "')\n\
 	.outerLabel('number " + outer + "');\n\
