@@ -12,3 +12,7 @@ var arc = new BubbleArc({
 
 arc.dom().appendTo('body');
 ```
+
+Sorry for missing documentation. You can find some explaining demo here:
+
+http://loilo.github.io/bubble-arc/
