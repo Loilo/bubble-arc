@@ -2,11 +2,42 @@
 <html>
 <head>
 	<title>Oh hai.</title>
-	<link href='http://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400' rel='stylesheet' type='text/css'>
-	<script type="text/javascript" src="http://code.jquery.com/jquery-2.1.4.min.js"></script>
+	<!-- <link href='http://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400' rel='stylesheet' type='text/css'> -->
+	<script type="text/javascript" src="jquery.js"></script>
+	<script type="text/javascript" src="prism.js"></script>
 	<script type="text/javascript" src="bubble-arc.min.js"></script>
 	<link rel="stylesheet" type="text/css" href="bubble-arc.min.css">
+	<link rel="stylesheet" type="text/css" href="prism.css">
 	<style type="text/css">
+	@keyframes pulse {
+		0% {
+			transform: scale(1);
+		}
+		50% {
+			transform: scale(1.2);
+		}
+		100% {
+			transform: scale(1);
+		}
+	}
+	@-webkit-keyframes pulse {
+		0% {
+			transform: scale(1);
+		}
+		50% {
+			transform: scale(1.2);
+		}
+		100% {
+			transform: scale(1);
+		}
+	}
+	.pulse {
+		background-color: #bf3131 !important;
+		animation: 2s pulse infinite;
+		-webkit-animation: 2s pulse infinite;
+	}
+
+
 	html, body {
 		margin: 0;
 		padding: 0;
@@ -18,16 +49,14 @@
 		background-color: #F7F7F7;
 		min-height: 100%;
 		font-family: 'Source Sans Pro', Helvetica, sans-serif;
-		font-weight: 300;
 		text-align: center;
 	}
 	.center {
 		position: absolute;
-		margin-top: -50px;
 		background-color: #fff;
 	}
 	.container {
-		height: 600px;
+		height: 700px;
 		background-color: #eee;
 		position: relative;
 	}
@@ -40,35 +69,243 @@
 		margin: 0;
 		padding: 1em 0;
 	}
+	pre {
+		text-align: left;
+	}
+	.controller {
+		padding: 2em;
+		box-sizing: border-box;
+	}
+	.button {
+		transition: background-color 1s;
+		cursor: pointer;
+		background-color: #2985db;
+		color: white;
+		border: none;
+		font: inherit;
+		border-radius: 6px;
+		padding: 0.5em 0.75em;
+		margin: 0.25em;
+	}
+	.button.off {
+		opacity: 0.6;
+	}
+	.console, .controller {
+		display: inline-block;
+		width: 50%;
+		vertical-align: top;
+		max-width: 700px;
+		text-align: left;
+	}
 	</style>
 	<script>
+	var circs = {};
+	function buttons () {
+		btn('Add circle', function () {
+			$(this).removeClass('pulse');
+			counter++;
+			var inner = counter;
+			var outer = nrWord(inner);
+
+			var c = Circle.create().innerLabel(inner).outerLabel('number ' + outer);
+			circs[inner] = c;
+			arc.add(c);
+			demoConsole.add("var circle" + inner + " = Circle\n\
+	.create()\n\
+	.innerLabel('" + inner + "')\n\
+	.outerLabel('number " + outer + "')\n\
+\n\
+arc.add(circle" + inner + ");");
+		}).addClass('pulse');
+
+		btn('Remove circle', function () {
+			var rm = prompt('Number?');
+			if (circs[rm]) {
+				arc.remove(circs[rm]);
+				demoConsole.add("arc.remove(circle" + rm + ");");
+			} else {
+				demoConsole.add("// there is no circle with the number '" + rm + "'");
+			}
+		});
+
+		btn('Reverse', function () {
+			arc.reverse();
+			demoConsole.add("arc.reverse();");
+		});
+
+		btn();
+
+
+		btn('Collapse', function () {
+			arc.collapse();
+			demoConsole.add("arc.collapse();");
+		});
+
+		btn('Expand', function () {
+			arc.expand();
+			demoConsole.add("arc.expand();");
+		});
+
+		btn();
+
+
+
+		btn('Change arc angle', function () {
+			var deg = prompt('Degrees', arc.getOption('degrees'));
+			if (deg === null) return;
+			if (isNaN(deg*1) || (deg*1) < 0 || parseInt(deg) !== parseFloat(deg)) {
+				demoConsole.add("// Please enter an integer greater than 0.");
+			} else {
+				arc.setOption('degrees', deg*1).arrangeAll();
+				demoConsole.add("arc.setOption('degrees', '" + deg + "').arrangeAll();");
+			}
+		});
+
+		btn('Change "root" angle', function () {
+			var deg = prompt('Degrees', arc.getOption('offset'));
+			if (deg === null) return;
+			if (isNaN(deg*1) || parseInt(deg) !== parseFloat(deg)) {
+				demoConsole.add("// Please enter an integer.");
+			} else {
+				arc.setOption('offset', deg*1).arrangeAll();
+				demoConsole.add("arc.setOption('offset', " + deg + ").arrangeAll();");
+			}
+		});
+
+		btn('Change radius', function () {
+			var deg = prompt('Degrees', arc.getOption('radius')[0]);
+			if (deg === null) return;
+			if (isNaN(deg*1) || (deg*1 < 0) || parseInt(deg) !== parseFloat(deg)) {
+				demoConsole.add("// Please enter an integer.");
+			} else {
+				arc.setOption('radius', [deg*1, 'px']).arrangeAll();
+				demoConsole.add("arc.setOption('radius', [" + deg + ", 'px']).arrangeAll();");
+			}
+		});
+
+		btn('Use last slot', function () {
+			var turnOn = $(this).hasClass('off');
+			arc.setOption('fillLast', turnOn).arrangeAll();
+			if (turnOn) {
+				$(this).removeClass('off');
+				demoConsole.add("arc.setOption('fillLast', true).arrangeAll();");
+			} else {
+				$(this).addClass('off');
+				demoConsole.add("arc.setOption('fillLast', false).arrangeAll();");
+			}
+		});
+
+		btn();
+
+		var alFirst = btn('Align first', function () {
+			alCenter.add(alLast).addClass('off');
+			alFirst.removeClass('off');
+
+			arc.setOption('align', 'first').arrangeAll();
+			demoConsole.add("arc.setOption('align', 'first').arrangeAll();");
+		}).addClass('off');
+
+		var alCenter = btn('Align center', function () {
+			alFirst.add(alLast).addClass('off');
+			alCenter.removeClass('off');
+
+			arc.setOption('align', 'center').arrangeAll();
+			demoConsole.add("arc.setOption('align', 'center').arrangeAll();");
+		});
+
+		var alLast = btn('Align last', function () {
+			alCenter.add(alFirst).addClass('off');
+			alLast.removeClass('off');
+
+			arc.setOption('align', 'last').arrangeAll();
+			demoConsole.add("arc.setOption('align', 'last').arrangeAll();");
+		}).addClass('off');
+	}
+
+	var demoConsole = {
+		add: function (code) {
+			var codeEl = $('<code>')
+				.addClass('language-javascript')
+				.html(code)
+			var pre = $('<pre>')
+				.append(codeEl)
+				.prependTo('.console')
+			pre.hide()
+			pre.slideDown(300);
+
+			Prism.highlightElement(codeEl[0]);
+		}
+	};
+
+	var counter = 0;
+	var btn = function (lbl, cb) {
+		if (!lbl) return $('.controller').append('<br><br>')
+
+		return $('<button>')
+			.html(lbl)
+			.addClass('button')
+			.click(cb)
+			.appendTo('.controller');
+				
+	};
+
 	var arc = null;
+	var nrWord = function (nr) {
+		if (nr === 0) return '';
+		uTwen = [
+			'one', 'two', 'three', 'four', 'five', 'six', 'seven', 'eight', 'nine', 'ten', 'eleven', 'twelve', 'thirteen', 'fourteen', 'fivteen', 'sixteen', 'seventeen', 'eighteen', 'nineteen'
+		];
+		uHun = [
+			'twenty', 'thirty', 'fourty', 'fifty', 'sixty', 'seventy', 'eighty', 'ninety'
+		];
+		rest = [
+			'thousand',
+			'million'
+		]
+		if (nr < 20) return uTwen[nr - 1];
+		var str = String(nr);
+
+		if (nr < 100) {
+			var one = parseInt(str.substr(1));
+			var ten = parseInt(str.substr(0,1));
+			return uHun[ten - 2] + (one === 0 ? '' : '-' + uTwen[one - 1])
+		}
+		if (nr < 1000) {
+			var ten = nrWord(str.substr(1) * 1);
+			return uTwen[str.substr(0,1)*1 - 1] + ' hundred' + (ten.length > 0 ? ' ' + ten : '');
+		}
+		return '?';
+	};
+
 	$(document).ready(function () {
+		buttons();
+
 		arc = new BubbleArc({
-			degrees: 360,
-			fillLast: false,
+			degrees: 180,
+			fillLast: true,
 			radius: [200, 'px']
 		});
 
 		arc.dom().appendTo('.container');
-		var one = Circle
-			.create()
-			.innerLabel('1')
-			.outerLabel('number one');
-		var two = Circle
-			.create()
-			.innerLabel('2')
-			.outerLabel('number two');
-		var three = Circle
-			.create()
-			.innerLabel('3')
-			.outerLabel('number three');
-		arc.add([one, two, three]);
+
+		var collection = {};
+
+
+		demoConsole.add("var arc = new BubbleArc({\n\
+	degrees: 180,\n\
+	fillLast: true,\n\
+	radius: [200, 'px']\n\
+});\n\
+\n\
+arc.dom().appendTo('.container');");
 	});
 	</script>
 </head>
 <body>
 	<h1>bubble-arc demo</h1>
+	<p>Just a little demo. Didn't have time for much. Docs will hopefully follow soon though. :)</p>
 	<div class="container"></div>
+	<div class="console"></div
+	><div class="controller"></div>
 </body>
 </html>
